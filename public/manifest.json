@@ -1,0 +1,19 @@
+{
+  "name": "Project Kumpas",
+  "short_name": "Kumpas",
+  "description": "Offline-first, voice-assisted ALS learning prototype.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#2b2e29",
+  "theme_color": "#f8c400",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/kumpas-logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
