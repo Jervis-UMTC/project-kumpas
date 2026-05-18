@@ -1,4 +1,4 @@
-const CACHE_NAME = 'project-kumpas-v6';
+const CACHE_NAME = 'project-kumpas-v7';
 const AUDIO_MANIFEST = '/audio/ceb/manifest.json';
 const IMAGE_MANIFEST = '/images/medicine/manifest.json';
 const CORE_ASSETS = [
@@ -63,24 +63,59 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+async function cacheFirst(request) {
+  const cached = await caches.match(request);
+  if (cached) {
+    return cached;
+  }
+
+  const response = await fetch(request);
+  if (response.ok) {
+    const copy = response.clone();
+    caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+  }
+  return response;
+}
+
+async function networkFirst(request) {
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      const copy = response.clone();
+      caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+    }
+    return response;
+  } catch {
+    return (
+      (await caches.match(request)) ||
+      (await caches.match('/index.html')) ||
+      (await caches.match('/'))
+    );
+  }
+}
+
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') {
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) {
-        return cached;
-      }
+  const url = new URL(event.request.url);
 
-      return fetch(event.request)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-          return response;
-        })
-        .catch(() => caches.match('/'));
-    }),
-  );
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+
+  if (
+    event.request.mode === 'navigate' ||
+    url.pathname === '/' ||
+    url.pathname === '/index.html' ||
+    url.pathname === '/manifest.json' ||
+    url.pathname === AUDIO_MANIFEST ||
+    url.pathname === IMAGE_MANIFEST
+  ) {
+    event.respondWith(networkFirst(event.request));
+    return;
+  }
+
+  event.respondWith(cacheFirst(event.request));
 });
