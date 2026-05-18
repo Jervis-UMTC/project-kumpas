@@ -40,7 +40,7 @@ const userChoices = [
 
 const medicineImages = {
   medicine: `${IMAGE_BASE}/medicine.jpg`,
-  label: `${IMAGE_BASE}/medicine-label.jpg`,
+  label: `${IMAGE_BASE}/medicine-label.png`,
   tablet: `${IMAGE_BASE}/tablet-hand.jpg`,
   morning: `${IMAGE_BASE}/morning-bright.jpg`,
   noon: `${IMAGE_BASE}/noon.jpg`,
