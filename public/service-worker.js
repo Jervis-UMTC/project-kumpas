@@ -1,6 +1,14 @@
-const CACHE_NAME = 'project-kumpas-v4';
+const CACHE_NAME = 'project-kumpas-v6';
 const AUDIO_MANIFEST = '/audio/ceb/manifest.json';
-const CORE_ASSETS = ['/', '/index.html', '/manifest.json', '/kumpas-logo.png', AUDIO_MANIFEST];
+const IMAGE_MANIFEST = '/images/medicine/manifest.json';
+const CORE_ASSETS = [
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/kumpas-logo.png',
+  AUDIO_MANIFEST,
+  IMAGE_MANIFEST,
+];
 
 async function findInitialAssets() {
   const response = await fetch('/index.html', { cache: 'reload' });
@@ -12,8 +20,8 @@ async function findInitialAssets() {
   return [...new Set([...CORE_ASSETS, ...buildAssets])];
 }
 
-async function findAudioAssets() {
-  const response = await fetch(AUDIO_MANIFEST, { cache: 'reload' });
+async function findManifestAssets(manifestPath) {
+  const response = await fetch(manifestPath, { cache: 'reload' });
 
   if (!response.ok) {
     return [];
@@ -35,8 +43,10 @@ self.addEventListener('install', (event) => {
       const assets = await findInitialAssets().catch(() => CORE_ASSETS);
       await cache.addAll(assets);
 
-      const audioAssets = await findAudioAssets().catch(() => []);
-      await Promise.all(audioAssets.map((asset) => cache.add(asset).catch(() => undefined)));
+      const audioAssets = await findManifestAssets(AUDIO_MANIFEST).catch(() => []);
+      const imageAssets = await findManifestAssets(IMAGE_MANIFEST).catch(() => []);
+      const demoAssets = [...new Set([...audioAssets, ...imageAssets])];
+      await Promise.all(demoAssets.map((asset) => cache.add(asset).catch(() => undefined)));
     }),
   );
   self.skipWaiting();
