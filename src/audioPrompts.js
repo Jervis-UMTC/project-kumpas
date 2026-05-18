@@ -19,9 +19,14 @@ export const voicePrompts = {
     fallbackText: 'Kinsa ang mogamit karon? Pindota ang imong litrato.',
     src: '/audio/ceb/login-user.wav',
   },
+  'splash.start': {
+    text: 'Pindota ang logo aron magsugod.',
+    fallbackText: 'Pindota ang logo aron magsugod.',
+    src: '/audio/ceb/splash-start.wav',
+  },
   'menu.start': {
-    text: 'Maayong adlaw! Pindota ang libro para sa alpabeto, ang kilat para sa kuryente, ang tambal para sa reseta, o ang cellphone para sa text scam.',
-    fallbackText: 'Maayong adlaw! Pindota ang libro para sa alpabeto, ang kilat para sa kuryente, ang tambal para sa reseta, o ang cellphone para sa text scam.',
+    text: 'Pili og leksyon. Karon, tambal sa atong praktisan. Pindota ang hulagway sa tambal.',
+    fallbackText: 'Pili og leksyon. Karon, tambal sa atong praktisan. Pindota ang hulagway sa tambal.',
     src: '/audio/ceb/menu-start.wav',
   },
   'menu.retry': {
@@ -35,9 +40,14 @@ export const voicePrompts = {
     src: '/audio/ceb/lesson-bill.wav',
   },
   'lesson.medicine': {
-    text: 'Tan-awa ang tambal. Pag-inom og usa ka tableta, katulo sa usa ka adlaw.',
-    fallbackText: 'Tan-awa ang tambal. Pag-inom og usa ka tableta, katulo sa usa ka adlaw.',
+    text: 'Pag-inom og usa ka tableta, tulo ka higayon sa usa ka adlaw: buntag pagkahuman sa pamahaw, udto pagkahuman sa paniudto, ug gabii sa dili pa matulog.',
+    fallbackText: 'Pag-inom og usa ka tableta, tulo ka higayon sa usa ka adlaw: buntag pagkahuman sa pamahaw, udto pagkahuman sa paniudto, ug gabii sa dili pa matulog.',
     src: '/audio/ceb/lesson-medicine.wav',
+  },
+  'lesson.label': {
+    text: 'Tan-awa ang pakete sa tambal. Ang label mao ang bahin nga naay ngalan ug paagi sa pag-inom.',
+    fallbackText: 'Tan-awa ang pakete sa tambal. Ang label mao ang bahin nga naay ngalan ug paagi sa pag-inom.',
+    src: '/audio/ceb/lesson-label.wav',
   },
   'lesson.scam': {
     text: 'Tan-awa ang text. Pagbantay, kini usa ka scam. Ayaw ihatag ang imong password.',
@@ -45,8 +55,8 @@ export const voicePrompts = {
     src: '/audio/ceb/lesson-scam.wav',
   },
   'test.medicine': {
-    text: 'Pila ka tableta ang imnon sa usa ka adlaw?',
-    fallbackText: 'Pila ka tableta ang imnon sa usa ka adlaw?',
+    text: 'Asa ang sakto nga pag-inom sa tambal sa tibuok adlaw?',
+    fallbackText: 'Asa ang sakto nga pag-inom sa tambal sa tibuok adlaw?',
     src: '/audio/ceb/test-medicine.wav',
   },
   'test.scam': {
@@ -69,6 +79,11 @@ export const voicePrompts = {
     fallbackText: 'Hain ang tambal?',
     src: '/audio/ceb/test1-medicine.wav',
   },
+  'test.label': {
+    text: 'Hain ang label sa tambal?',
+    fallbackText: 'Hain ang label sa tambal?',
+    src: '/audio/ceb/test-label.wav',
+  },
   'test1.scam': {
     text: 'Asa ang cellphone?',
     fallbackText: 'Asa ang cellphone?',
@@ -80,8 +95,8 @@ export const voicePrompts = {
     src: '/audio/ceb/test1-bill.wav',
   },
   'voice.read': {
-    text: 'Karon, ikaw na. Basaha ang nakasulat.',
-    fallbackText: 'Karon, ikaw na. Basaha ang nakasulat.',
+    text: 'Karon, ikaw na. Isulti kung kanus-a imnon ang tambal.',
+    fallbackText: 'Karon, ikaw na. Isulti kung kanus-a imnon ang tambal.',
     src: '/audio/ceb/voice-read.wav',
   },
   'success.good': {
